@@ -1,3 +1,9 @@
+---
+layout: home
+list_title: Home
+title: ''
+---
+
 [password-security](http://lightszentip.github.io/password-security/)
 
 [form-validator](https://github.com/lightszentip/form-validator)
