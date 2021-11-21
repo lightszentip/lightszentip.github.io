@@ -1,8 +1,8 @@
 title: Lightszentip Blog
 description: it information
 google_analytics: 
-show_downloads: true
+show_downloads: false
 theme: jekyll-theme-architect
-
+markdown: GFM
 gems:
   - jekyll-mentions
