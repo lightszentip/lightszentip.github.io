@@ -3,7 +3,7 @@ description: it information
 google_analytics: 
 show_downloads: false
 show_excerpts: true
-theme: jekyll-theme-minimal
+theme: minima
 markdown: GFM
 gems:
   - jekyll-mentions
