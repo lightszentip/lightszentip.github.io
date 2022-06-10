@@ -22,9 +22,8 @@ jobs:
           # extended: true
 
       - name: Build
-        run: 
-          cd webpage
-          hugo --minify
+        working-directory: ./webpage
+        run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
