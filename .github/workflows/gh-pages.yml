@@ -31,7 +31,7 @@ jobs:
         with:
           personal_token: ${{ secrets.TOKEN }}
           external_repository: lightszentip/lightszentip.github.io
-          publish_dir: ./public
+          publish_dir: ./webpage/public
           #   keep_files: true
           user_name: lightszentip
           user_email: lightszentip@gmail.com
