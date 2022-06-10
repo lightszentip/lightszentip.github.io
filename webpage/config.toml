@@ -1,4 +1,4 @@
-baseURL = 'lightszentip.github.io'
+baseURL = 'https://lightszentip.github.io'
 languageCode = 'en-GB'
 title = ''
 lastmod = true
