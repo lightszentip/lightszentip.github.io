@@ -13,7 +13,6 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
@@ -21,8 +20,9 @@ jobs:
         with:
           hugo-version: 'latest'
           # extended: true
-          
+
       - name: Build
+        working-directory: ./webpage
         run: hugo --minify
 
       - name: Deploy
@@ -30,7 +30,8 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           personal_token: ${{ secrets.TOKEN }}
-          publish_dir: ./public
+          external_repository: lightszentip/lightszentip.github.io
+          publish_dir: ./webpage/public
           #   keep_files: true
           user_name: lightszentip
           user_email: lightszentip@gmail.com
