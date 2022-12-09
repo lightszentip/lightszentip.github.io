@@ -13,6 +13,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
         with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
@@ -22,7 +23,6 @@ jobs:
           # extended: true
 
       - name: Build
-        working-directory: ./
         run: hugo --minify
 
       - name: Deploy
