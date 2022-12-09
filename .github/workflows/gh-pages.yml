@@ -30,7 +30,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           personal_token: ${{ secrets.TOKEN }}
-          external_repository: lightszentip/lightszentip.github.io
           publish_dir: ./webpage/public
           #   keep_files: true
           user_name: lightszentip
