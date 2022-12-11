@@ -9,7 +9,9 @@ summary: "How to use sqlite in laravel"
 
 ---
 
-# Setup .env
+# Setup Laravel to use sqlite
+
+Setup .env
 
 Open the .env file and change the following settings:
 
