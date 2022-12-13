@@ -2,8 +2,8 @@
 
 layout: post
 title: "ChatGPT - Laravel vs Spring Boot"
-date: 2022-12-13 00:00:00 -0000
-categories: chatgpt, laravel, springboot
+date: 2022-12-12 00:00:00 -0000
+categories: chatgpt
 draft: false
 summary: "A result from chatGPT to laravel and spring boot"
 
