@@ -29,7 +29,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          personal_token: ${{ secrets.TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           external_repository: lightszentip/lightszentip.github.io
           publish_dir: ./webpage/public
           #   keep_files: true
