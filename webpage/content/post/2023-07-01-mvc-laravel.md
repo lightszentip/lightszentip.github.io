@@ -30,7 +30,7 @@ composer create-project --prefer-dist laravel/laravel example-mvc-app
 Next, we create a model for our blog articles using the Artisan command:
 
 ```
-php artisan make:model Artikel
+php artisan make:model Article
 ```
 
 ## Step 2: Migration and Database Setup
@@ -38,7 +38,7 @@ php artisan make:model Artikel
 We create a migration to generate the table for our blog articles in the database:
 
 ```
-php artisan make:migration create_artikel_table
+php artisan make:migration create_articlel_table
 ```
 
 Open the newly created migration file in the `database/migrations` folder and define the columns for the blog articles table. Then, execute the migration:
@@ -57,26 +57,26 @@ Now, we create a controller to manage actions for our blog articles:
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\ArtikelRepository;
+use App\Repositories\ArticleInterfaceRepository;
 
-class ArtikelController extends Controller
+class ArticleController extends Controller
 {
-    private $artikelRepository;
+    private ArticleInterfaceRepository $articleRepository;
 
-    public function __construct(ArtikelRepository $artikelRepository)
+    public function __construct(ArticleInterfaceRepository $articleRepository)
     {
-        $this->artikelRepository = $artikelRepository;
+        $this->articleRepository = $articleRepository;
     }
 
     public function index()
     {
-        $artikel = $this->artikelRepository->getAll();
+        $artikel = $this->articleRepository->getAll();
         return view('artikel.index', ['artikel' => $artikel]);
     }
 
     public function show($id)
     {
-        $artikel = $this->artikelRepository->getById($id);
+        $artikel = $this->articleRepository->getById($id);
         return view('artikel.show', ['artikel' => $artikel]);
     }
 
@@ -87,25 +87,25 @@ class ArtikelController extends Controller
 
     public function store(Request $request)
     {
-        $this->artikelRepository->create($request->all());
+        $this->articleRepository->create($request->all());
         return redirect()->route('artikel.index');
     }
 
     public function edit($id)
     {
-        $artikel = $this->artikelRepository->getById($id);
+        $artikel = $this->articleRepository->getById($id);
         return view('artikel.edit', ['artikel' => $artikel]);
     }
 
     public function update(Request $request, $id)
     {
-        $this->artikelRepository->update($id, $request->all());
+        $this->articleRepository->update($id, $request->all());
         return redirect()->route('artikel.index');
     }
 
     public function destroy($id)
     {
-        $this->artikelRepository->delete($id);
+        $this->articleRepository->delete($id);
         return redirect()->route('artikel.index');
     }
 }
@@ -115,14 +115,14 @@ class ArtikelController extends Controller
 
 Next, we create a repository class to handle database queries for our blog articles:
 
-First, we create an interface for our ArtikelRepository to define the contract that our repository class must implement. Create a new file ArtikelRepositoryInterface.php in the app/Repositories folder:
+First, we create an interface for our ArticleRepository to define the contract that our repository class must implement. Create a new file ArticleInterfaceRepository.php in the app/Repositories folder:
 
 ```php
-// app/Repositories/ArtikelRepositoryInterface.php
+// app/Repositories/ArticleInterfaceRepository.php
 
 namespace App\Repositories;
 
-interface ArtikelRepositoryInterface
+interface ArticleInterfaceRepository
 {
     public function getAll();
 
@@ -142,9 +142,9 @@ interface ArtikelRepositoryInterface
 
 namespace App\Repositories;
 
-use App\Models\Artikel;
+use App\Models\Article;
 
-class ArtikelRepository implements ArtikelRepositoryInterface
+class ArticleRepository implements ArticleInterfaceRepository
 {
     public function getAll()
     {
@@ -185,9 +185,11 @@ And add the following code:
 ```
 public function register() 
 {
-    $this->app->bind(ArtikelRepositoryInterface::class, ArtikelRepository::class);
+    $this->app->bind(ArticleInterfaceRepository::class, ArticleRepository::class);
 }
 ```
+
+Annd add the provider into "config/app.php" to the list of providers.
 
 ## Step 6: Testing the Architecture
 
