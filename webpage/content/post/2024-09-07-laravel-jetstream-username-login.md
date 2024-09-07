@@ -101,3 +101,57 @@ The login page set in default the parameter as email. So we need to change this 
 php artisan migrate
 php artisan db:seed
 ```
+
+## Change the existign create user process
+
+### app/Models/User.php
+
+Add 'username' to fillable:
+
+```php
+ protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'username',
+    ];
+```
+
+### app/Actions/Fortify/CreateNewUser.php
+
+Update the method 'public function create(array $input): User'
+
+```php
+  public function create(array $input): User
+    {
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => $this->passwordRules(),
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ])->validate();
+        return DB::transaction(function () use ($input) {
+            return tap(User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'username' => $input['username'],
+                'password' => Hash::make($input['password']),
+            ]), function (User $user) {
+                $this->createTeam($user);
+            });
+        });
+    }
+```
+
+### tests/Feature/AuthenticationTest.php
+
+Change "'email' => $user->email," to " 'identity' => $user->email,"
+
+### tests/Feature/RegistrationTest.php
+
+add username to the register post
+
+## Example integration in Laravel 
+
+see https://github.com/lightszentip/laravel-starter-base-app/pull/34/files
