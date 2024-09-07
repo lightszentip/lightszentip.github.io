@@ -11,6 +11,10 @@ summary: "A stept by step how to, to use jetstream login page with username and 
 
 # Jetstream login with username and email instead email only
 
+In this blog post, we explore how to modify Laravel Jetstream to support both username and email for authentication in your Laravel application, instead of the default email-only setup. Laravel Jetstream provides a great starting point for building applications with authentication, user management, and more, but its default configuration limits user login to email addresses. By customizing Jetstream, you can allow users to log in using either their username or email, enhancing flexibility and user experience.
+
+<!--more-->
+
 ## Database
 
 The first step is to add the username to the users table:
