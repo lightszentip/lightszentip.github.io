@@ -8,6 +8,10 @@ pygmentsUseClasses = true
 [frontmatter]
 lastmod = ["lastmod", ":fileModTime", ":default"]
 
+[services]
+  [services.googleAnalytics]
+    ID = ""
+
 
 
 [params]
@@ -23,6 +27,7 @@ userStatusEmoji = "😀"
 favicon = "https://avatars.githubusercontent.com/u/3680505?v=4"
 location = "Germany"
 enableGitalk = false
+enableSearch = true
 
 [[params.links]]
 title = "gnetos"

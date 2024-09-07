@@ -1,8 +1,7 @@
 baseURL = "https://meik2333.com/"
-languageCode = "zh-cn"
+languageCode = "de-de"
 title = "MeiK's blog"
 theme = "github-style"
-googleAnalytics = "UA-123456-789"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
@@ -21,9 +20,12 @@ pygmentsUseClasses = true
   rss = true
   lastmod = true
   favicon = "/images/github.png"
+  avatar = "/images/avatar.png"
+  headerIcon = "/images/github-mark-white.png"
   location = "China"
   userStatusEmoji = "😀"
   enableGitalk = true
+  enableSearch = true
     
   [params.gitalk]
     clientID = "Your client ID" # Your client ID
@@ -48,3 +50,8 @@ pygmentsUseClasses = true
 
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
+
+
+[services]
+  [services.googleAnalytics]
+    ID = "UA-123456-789"
